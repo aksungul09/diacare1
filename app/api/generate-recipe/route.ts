@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import OpenAI from "openai"
 
-
+// Yuqori darajadagi (top-level) client o'chirildi - BU TO'G'RI
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
     console.log("[v0] OpenAI API Key exists:", !!process.env.OPENAI_API_KEY)
     console.log("[v0] OpenAI API Key length:", process.env.OPENAI_API_KEY?.length || 0)
 
+    // 1. API kaliti tekshiriladi
     if (!process.env.OPENAI_API_KEY) {
       return NextResponse.json(
         {
@@ -20,10 +21,12 @@ export async function POST(request: NextRequest) {
         { status: 500 },
       )
     }
+
+    // 2. ✅ Client faqat funksiya ichida (runtime) yaratilmoqda
     const openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     })
-    
+
     const prompt = `Create a diabetes-friendly ${mealType} recipe with the following requirements:
 - Target calories: ${calories} per serving
 - Servings: ${servings}
