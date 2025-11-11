@@ -1,9 +1,7 @@
 import { type NextRequest, NextResponse } from "next/server"
 import OpenAI from "openai"
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,7 +20,10 @@ export async function POST(request: NextRequest) {
         { status: 500 },
       )
     }
-
+    const openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    })
+    
     const prompt = `Create a diabetes-friendly ${mealType} recipe with the following requirements:
 - Target calories: ${calories} per serving
 - Servings: ${servings}
