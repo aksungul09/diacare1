@@ -1,0 +1,135 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* === DiaCare Blue Theme (Light Mode) === */
+  --background: oklch(99% 0.005 240); /* Soft white */
+  --foreground: oklch(28% 0.02 250); /* Dark slate blue text */
+
+  --card: oklch(97% 0.01 240);
+  --card-foreground: var(--foreground);
+
+  --popover: oklch(100% 0 240);
+  --popover-foreground: var(--foreground);
+
+  --primary: oklch(60% 0.15 250); /* Bright medical blue */
+  --primary-dark: oklch(45% 0.15 250);
+  --primary-foreground: oklch(99% 0 240);
+
+  --secondary: oklch(70% 0.08 260); /* Steel blue-gray */
+  --secondary-foreground: var(--foreground);
+
+  --accent: oklch(68% 0.12 230); /* Cyan-teal accent */
+  --accent-foreground: oklch(99% 0 240);
+
+  --muted: oklch(95% 0.02 250);
+  --muted-foreground: oklch(48% 0.02 250);
+
+  --border: oklch(90% 0.01 240);
+  --input: oklch(98% 0.01 240);
+  --ring: oklch(60% 0.15 250 / 0.5);
+
+  --radius: 0.75rem;
+
+  --font-inter: "Inter", sans-serif;
+  --font-work-sans: "Work Sans", serif;
+}
+
+/* === Dark Mode (Midnight Blue Theme) === */
+.dark {
+  --background: oklch(17% 0.02 250); /* Deep navy */
+  --foreground: oklch(95% 0.01 250);
+
+  --card: oklch(22% 0.03 250);
+  --card-foreground: oklch(94% 0.02 250);
+
+  --primary: oklch(70% 0.15 250); /* Vibrant sky blue */
+  --primary-dark: oklch(55% 0.12 250);
+  --primary-foreground: oklch(8% 0 240);
+
+  --secondary: oklch(48.92% 0.21377 261.187); /* Muted indigo-gray */
+  --secondary-foreground: var(--foreground);
+
+  --accent: oklch(68% 0.12 230);
+  --accent-foreground: var(--foreground);
+
+  --muted: oklch(25% 0.03 250);
+  --muted-foreground: oklch(70% 0.01 250);
+
+  --border: oklch(30% 0.02 250);
+  --input: oklch(30% 0.02 250);
+  --ring: oklch(70% 0.15 250 / 0.5);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-work-sans);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* === Blue Gradient Utilities === */
+
+/* Hero sections or top headers */
+.bg-diacare-gradient {
+  background: linear-gradient(135deg, oklch(52% 0.15 260) 0%, oklch(65% 0.13 250) 50%, oklch(75% 0.12 220) 100%);
+}
+
+/* Buttons or cards */
+.bg-diacare-accent {
+  background: linear-gradient(145deg, oklch(60% 0.15 250), oklch(68% 0.12 230));
+}
+
+/* Dark mode hero */
+.dark .bg-diacare-gradient {
+  background: linear-gradient(135deg, oklch(35% 0.12 260) 0%, oklch(45% 0.10 240) 100%);
+}
+
+/* Accent glow effect */
+.text-glow {
+  text-shadow: 0 0 12px oklch(70% 0.15 250 / 0.8);
+}
+
+/* === Reusable Button Hover & Transition === */
+.btn-diacare {
+  @apply transition-all duration-300 rounded-full font-semibold;
+}
+
+.btn-diacare:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-diacare:focus {
+  @apply outline-none ring-2 ring-offset-2 ring-primary;
+}
+
+/* === Reusable Text Hover for Main Links/Headings === */
+.text-hover {
+  @apply transition-colors duration-300;
+}
+
+.text-hover:hover {
+  color: var(--primary);
+}
